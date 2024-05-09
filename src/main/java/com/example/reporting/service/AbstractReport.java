@@ -17,6 +17,7 @@ public abstract class AbstractReport<T extends AbstractDSDto, E extends Abstract
     private final DSRepository<E, Long> repository;
     private final Class<T> dtoClass;
 
+    @SuppressWarnings("unchecked")
     protected AbstractReport(DSRepository<E, Long> repository) {
         this.repository = repository;
         Type superclass = getClass().getGenericSuperclass();

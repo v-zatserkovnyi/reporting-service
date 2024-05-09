@@ -3,6 +3,7 @@ package com.example.reporting.model.api;
 import com.example.reporting.model.enums.Comparator;
 import com.example.reporting.model.enums.Format;
 import com.example.reporting.model.enums.Mode;
+import com.example.reporting.model.enums.Report;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -27,8 +28,8 @@ public class ReportApiRequest {
     private static final String COLUMNS_ARE_REQUIRED = "at least 2 columns are required";
     private static final String FILTERS_ARE_REQUIRED = "filters are required";
 
-    @NotBlank(message = "reportId is mandatory")
-    private String reportId;
+    @NotNull(message = "report is mandatory")
+    private Report report;
     private Mode mode = Mode.sync;
     private Format format;
     @NotNull(message = COLUMNS_ARE_REQUIRED)

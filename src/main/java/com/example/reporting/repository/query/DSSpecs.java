@@ -15,6 +15,7 @@ public final class DSSpecs {
         throw new UnsupportedOperationException();
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static <T extends AbstractDSEntity> Specification<T> createSpecification(@NonNull final List<ReportApiRequest.Filter> filters) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();

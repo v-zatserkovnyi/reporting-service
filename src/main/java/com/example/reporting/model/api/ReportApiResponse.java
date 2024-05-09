@@ -5,10 +5,10 @@ import lombok.*;
 
 @Data
 @Builder
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReportApiResponse {
 
-
+    private Object content;
 }
