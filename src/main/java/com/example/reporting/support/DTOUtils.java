@@ -1,6 +1,7 @@
 package com.example.reporting.support;
 
 import com.example.reporting.entity.report.AbstractDSEntity;
+import com.example.reporting.exception.BadRequestException;
 import com.example.reporting.model.report.AbstractDSDto;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 
@@ -25,7 +26,7 @@ public final class DTOUtils {
                 }
             }
         } catch (Exception e) {
-            throw new RuntimeException("Error mapping fields", e);
+            throw new BadRequestException("Error mapping fields", e);
         }
         return dest;
     }

@@ -6,6 +6,7 @@ import com.example.reporting.model.api.ReportApiRequest;
 import jakarta.persistence.criteria.Predicate;
 import lombok.NonNull;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public final class DSSpecs {
         return (root, query, builder) -> {
 
             try {
-                List<Predicate> predicates = new ArrayList<>();
+                final List<Predicate> predicates = new ArrayList<>();
                 filters.forEach(filter -> {
                     Predicate predicate;
                     switch (filter.getComparator()) {
@@ -37,9 +38,14 @@ public final class DSSpecs {
             catch (Throwable ex) {
                 throw new BadRequestException("Invalid filters provided", ex);
             }
-
         };
     }
 
-
+    public static Sort createSort(List<ReportApiRequest.Sort> sortParams) {
+        List<Sort.Order> orders = new ArrayList<>();
+        for (ReportApiRequest.Sort param : sortParams) {
+            orders.add(new Sort.Order(param.getDirection(), param.getColumn()));
+        }
+        return Sort.by(orders);
+    }
 }

@@ -6,15 +6,16 @@ import com.example.reporting.model.enums.Mode;
 import com.example.reporting.model.enums.Report;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Sort.Direction;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -39,7 +40,7 @@ public class ReportApiRequest {
     @NotNull(message = FILTERS_ARE_REQUIRED)
     @Size(min = 1, message = FILTERS_ARE_REQUIRED)
     private List<Filter> filters;
-    private List<String> sorting;
+    private List<Sort> sorting;
     private List<String> grouping;
 
     @AssertTrue(message = "format is required for async mode only")
@@ -66,5 +67,17 @@ public class ReportApiRequest {
             if (comparator == Comparator.equals) return true;
             return value instanceof Comparable;
         }
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Sort {
+
+        @NotBlank(message = "column is mandatory")
+        private String column;
+        private Direction direction = Direction.ASC;
     }
 }

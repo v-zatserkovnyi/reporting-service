@@ -35,7 +35,12 @@ public abstract class AbstractReport<T extends AbstractDSDto, E extends Abstract
     public Object getContent(final ReportApiRequest request) {
 
         final Specification<E> specs = DSSpecs.createSpecification(request.getFilters());
-        final List<E> entities = repository.findAll(specs);
+        final List<E> entities;
+        if (CollectionUtils.isEmpty(request.getSorting()))
+            entities = repository.findAll(specs);
+        else
+            entities = repository.findAll(specs, DSSpecs.createSort(request.getSorting()));
+
         final List<T> dtos = entities.stream()
                 .map(e -> DTOUtils.mapFields(e, dtoClass, request.getColumns()))
                 .toList();
