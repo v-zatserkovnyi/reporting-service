@@ -12,16 +12,16 @@ public final class DTOUtils {
         throw new UnsupportedOperationException();
     }
 
-    private static final PropertyUtilsBean propUtils = new PropertyUtilsBean();
+    private static final PropertyUtilsBean PROP_UTILS = new PropertyUtilsBean();
 
     public static <T extends AbstractDSDto, E extends AbstractDSEntity> T mapFields(E source, Class<T> destClass, List<String> fields) {
         T dest;
         try {
-            dest = destClass.getDeclaredConstructor().newInstance();
+            dest = ClassUtils.newInstance(destClass);
             for (String field : fields) {
-                if (propUtils.isReadable(source, field) && propUtils.isWriteable(dest, field)) {
-                    Object value = propUtils.getProperty(source, field);
-                    propUtils.setProperty(dest, field, value);
+                if (PROP_UTILS.isReadable(source, field) && PROP_UTILS.isWriteable(dest, field)) {
+                    Object value = PROP_UTILS.getProperty(source, field);
+                    PROP_UTILS.setProperty(dest, field, value);
                 }
             }
         } catch (Exception e) {

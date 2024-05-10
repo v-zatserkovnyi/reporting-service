@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class InventoryReportDto extends AbstractDSDto {
 
     private String itemName;
-    private String warehouse;
+    private String region;
     private Integer amount;
 }

@@ -1,6 +1,13 @@
 INSERT INTO report.fruit_report (fruit_name, delivery_company, delivery_date, amount, price, create_date) VALUES ('Apple', 'Fedex', '2019-11-12', 10, 50.40, CURRENT_TIMESTAMP());
+INSERT INTO report.fruit_report (fruit_name, delivery_company, delivery_date, amount, price, create_date) VALUES ('Apple', 'Fedex', '2019-11-12', 5, 50.50, CURRENT_TIMESTAMP());
 INSERT INTO report.fruit_report (fruit_name, delivery_company, delivery_date, amount, price, create_date) VALUES ('Apple', 'UPS', '2019-11-12', 20, 51.32, CURRENT_TIMESTAMP());
 INSERT INTO report.fruit_report (fruit_name, delivery_company, delivery_date, amount, price, create_date) VALUES ('Apple', 'Fedex', '2019-11-13', 50, 49.22, CURRENT_TIMESTAMP());
 INSERT INTO report.fruit_report (fruit_name, delivery_company, delivery_date, amount, price, create_date) VALUES ('Apple', 'Fedex', '2019-11-14', 70, 48.32, CURRENT_TIMESTAMP());
 INSERT INTO report.fruit_report (fruit_name, delivery_company, delivery_date, amount, price, create_date) VALUES ('Orange', 'Fedex', '2019-11-12', 10, 10.40, CURRENT_TIMESTAMP());
 INSERT INTO report.fruit_report (fruit_name, delivery_company, delivery_date, amount, price, create_date) VALUES ('Orange', 'UPS', '2019-11-12', 12, 10.50, CURRENT_TIMESTAMP());
+INSERT INTO report.inventory_report (item_name, region, amount, create_date) VALUES ('Onion', 'East', 12, CURRENT_TIMESTAMP());
+INSERT INTO report.inventory_report (item_name, region, amount, create_date) VALUES ('Onion', 'West', 22, CURRENT_TIMESTAMP());
+INSERT INTO report.inventory_report (item_name, region, amount, create_date) VALUES ('Potato', 'East', 3, CURRENT_TIMESTAMP());
+INSERT INTO report.inventory_report (item_name, region, amount, create_date) VALUES ('Potato', 'West', 4, CURRENT_TIMESTAMP());
+INSERT INTO report.inventory_report (item_name, region, amount, create_date) VALUES ('Meat', 'East', 33, CURRENT_TIMESTAMP());
+INSERT INTO report.inventory_report (item_name, region, amount, create_date) VALUES ('Meat', 'West', 44, CURRENT_TIMESTAMP());

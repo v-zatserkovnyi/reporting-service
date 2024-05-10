@@ -18,6 +18,6 @@ public class InventoryReportEntity extends AbstractDSEntity {
     private Long id;
 
     private String itemName;
-    private String warehouse;
+    private String region;
     private Integer amount;
 }

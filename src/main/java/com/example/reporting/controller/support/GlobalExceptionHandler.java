@@ -1,5 +1,6 @@
 package com.example.reporting.controller.support;
 
+import com.example.reporting.exception.BadRequestException;
 import com.example.reporting.model.api.ApiError;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,15 @@ public class GlobalExceptionHandler {
         log.error(ERROR_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR.name(), exception);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(ApiError.builder().message(exception.getMessage()).build());
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiError> bad(@NonNull final RuntimeException exception) {
+        log.warn(ERROR_MESSAGE, HttpStatus.BAD_REQUEST.name(), exception);
+
+        return ResponseEntity.badRequest()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(ApiError.builder().message(exception.getMessage()).build());
     }

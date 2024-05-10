@@ -42,7 +42,7 @@ public class ReportApiRequest {
     private List<String> sorting;
     private List<String> grouping;
 
-    @AssertTrue
+    @AssertTrue(message = "format is required for async mode only")
     private boolean isValidMode() {
         return (Mode.sync == mode && Objects.isNull(format)) || (Mode.async == mode && Objects.nonNull(format));
     }
@@ -60,7 +60,7 @@ public class ReportApiRequest {
         @NotNull(message = "value is mandatory")
         private Object value;
 
-        @AssertTrue
+        @AssertTrue(message = "incompatible comparator and value")
         private boolean isValidComparator() {
             if (comparator == Comparator.like && !(value instanceof String)) return false;
             if (comparator == Comparator.equals) return true;
